@@ -1,7 +1,11 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
-import Context from "./Context";
-import { Component, lazy, Suspense } from "react";
+// import Context from "./Context";
+// import Memo from "./memo";
+// import Test from "./hooks/useContext";
+import TodoList from "./TodoList";
+import { Component } from "react";
+// lazy, Suspense
 
 /* 
 1. lazy异步加载组件，Suspense组件没加载出来时所展示的jsx
@@ -11,7 +15,7 @@ import { Component, lazy, Suspense } from "react";
       2：通过静态方法getDerivedStateFromError获取错误边界
 */
 
-const LazyAsync = lazy(() => import(/* webpackChunkName: Lazy */ "./Lazy"));
+// const LazyAsync = lazy(() => import(/* webpackChunkName: Lazy */ "./Lazy"));
 
 class App extends Component {
   state = {
@@ -34,9 +38,11 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <Suspense fallback={<h1>laoding...</h1>}>
+        {/* <Suspense fallback={<h1>laoding...</h1>}>
           <LazyAsync />
-        </Suspense>
+        </Suspense> */}
+        {/* <Test /> */}
+        <TodoList />
       </div>
     );
   }
