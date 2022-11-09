@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useCallback, useRef, useState } from "react";
 import "./App.css";
-
+import { createSet, createAdd, createRemove, createComplete } from "./action";
+import reducer from "./reducer.js";
 export default function TodoList() {
   return (
     <div>
@@ -9,15 +10,16 @@ export default function TodoList() {
   );
 }
 
-const TodoItem = memo(function TodoItem(props) {
-  const { handleRemove, handleCompelete, id, text, commpelete } = props;
+const ASYNC_STATE = {};
 
+const TodoItem = memo(function TodoItem(props) {
+  const { compeleteTodo, removeTodo, id, text, commpelete } = props;
   const onChange = () => {
-    handleCompelete(id);
+    compeleteTodo(id);
   };
 
   const onRemove = () => {
-    handleRemove(id);
+    removeTodo(id);
   };
 
   return (
@@ -34,7 +36,7 @@ const TodoItem = memo(function TodoItem(props) {
 });
 
 const Todos = memo(function Todos(props) {
-  const { todos } = props;
+  const { todos, compeleteTodo, removeTodo } = props;
   return (
     <>
       <ul>
@@ -46,6 +48,8 @@ const Todos = memo(function Todos(props) {
               key={item.id}
               text={item.text}
               commpelete={item.commpelete}
+              compeleteTodo={compeleteTodo}
+              removeTodo={removeTodo}
             />
           );
         })}
@@ -56,53 +60,86 @@ const Todos = memo(function Todos(props) {
 
 const Contronl = memo(function Contronl() {
   const [todos, setTodos] = useState([]);
+  const [increment, setIncrement] = useState(0);
 
   const inputRef = useRef();
+
+  useEffect(() => {
+    Object.assign(ASYNC_STATE, {
+      todos,
+      increment,
+    });
+  }, [todos, increment]);
+  /* 
+    传入的是action创建返回的时候一个只接受payloadde函
+    批量生成
+     (
+      {
+        addTodo:createAdd
+      },
+     dispatch 
+     )
+  */
+  const bindActionCreators = (actionCreators, dispatch) => {
+    const ret = {};
+    for (const key in actionCreators) {
+      ret[key] = (...arg) => {
+        const actionCreator = actionCreators[key];
+        const action = actionCreator(...arg);
+        dispatch(action);
+      };
+    }
+    return ret;
+  };
+
+  const dispatch = (action) => {
+    const setters = {
+      todos: setTodos,
+      increment: setIncrement,
+    };
+
+    if ("function" === typeof action) {
+      action(dispatch, () => ASYNC_STATE);
+      return;
+    }
+
+    const newState = reducer(ASYNC_STATE, action);
+    for (const key in newState) {
+      setters[key](newState[key]);
+    }
+  };
+
+  const throttled = (fn, delay = 500) => {
+    const oldTime = Date.now();
+    return (fn, delay) => {
+      const newTime = Date.now();
+      if (newTime - oldTime >= delay) {
+        fn();
+        oldTime = Date.now();
+      }
+    };
+  };
+
   const onChangeAdd = (e) => {
     e.preventDefault();
     if (inputRef.current.value.length === 0) {
       return;
     }
-    setTodos([
-      ...todos,
-      {
-        text: inputRef.current.value.trim(),
-        id: Date.now(),
-        commpelete: false,
-      },
-    ]);
+
+    const { addTodo } = bindActionCreators({ addTodo: createAdd }, dispatch);
+    addTodo(inputRef.current.value.trim());
     inputRef.current.value = "";
   };
 
   useEffect(() => {
-    const todosLIst = JSON.parse(localStorage.getItem("todos") || []);
-
-    setTodos(todosLIst);
+    const todosList = JSON.parse(localStorage.getItem("todos")) || [];
+    const { set } = bindActionCreators({ set: createSet }, dispatch);
+    set(todosList);
   }, []);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
-
-  const handleRemove = useCallback((id) => {
-    setTodos((todos) => {
-      const arr = todos.filter((item) => {
-        return item.id !== id;
-      });
-      return [...arr];
-    });
-  }, []);
-
-  const handleCompelete = useCallback((id) => {
-    setTodos((todos) => {
-      todos.forEach((item) => {
-        if (id === item.id) {
-          item.commpelete = !item.commpelete;
-        }
-      });
-      return [...todos];
-    });
-  }, []);
 
   return (
     <div className="container">
@@ -118,8 +155,10 @@ const Contronl = memo(function Contronl() {
       </div>
       <Todos
         todos={todos}
-        handleRemove={handleRemove}
-        handleCompelete={handleCompelete}
+        {...bindActionCreators(
+          { compeleteTodo: createComplete, removeTodo: createRemove },
+          dispatch
+        )}
       />
     </div>
   );
