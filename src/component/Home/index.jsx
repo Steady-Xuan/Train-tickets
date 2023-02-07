@@ -10,11 +10,6 @@ function Header() {
   return <div className="header">火车票</div>;
 }
 
-function selectCity() {
-  return;
-  <div></div>;
-}
-
 function City(props) {
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -32,14 +27,12 @@ function City(props) {
   const selector = useSelector((state) => {
     return state.dataTrickRducer;
   });
-
-  useEffect(() => {}, []);
-
   return (
     <div className="city">
-      <span onClick={selectCity}>{selector.start}</span>
+      <span onClick={selectCity} className='text'>{selector.start}</span>
       <span> --- </span>
       <span
+       className='text'
         onClick={() => {
           selectCity("isEnd");
         }}

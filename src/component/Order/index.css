@@ -5,6 +5,7 @@
     text-align: center;
     line-height: 50px;
     font-size: 18px;
+    position: relative;
 }
 
 .cityName {
@@ -46,4 +47,8 @@
 
 .container {
     position: relative;
+}
+.back{
+    position: absolute;
+    left: 20px;
 }

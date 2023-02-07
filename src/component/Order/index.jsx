@@ -5,9 +5,21 @@ import { pySegSort } from "../../utils/common";
 import { useNavigate } from "react-router-dom";
 import { startAction, endAction } from "../../store/action";
 function Header(props) {
-  const { isStart } = props;
+  const nav = useNavigate();
 
-  return <div className="header">选择{isStart ? "出发地" : "目的地"}</div>;
+  const { isStart } = props;
+  const goBack = () => {
+    nav("/home");
+  };
+
+  return (
+    <div className="header">
+      <span className="back" onClick={goBack}>
+        返回
+      </span>
+      <span>选择{isStart ? "出发地" : "目的地"}</span>
+    </div>
+  );
 }
 
 export default function Order(props) {
@@ -15,7 +27,6 @@ export default function Order(props) {
   const [code, setCode] = useState([]);
   const nav = useNavigate();
   const isStart = useSelector((state) => {
-    console.log("state", state);
     return state.isStartReducer.isStart;
   });
   const dataStartEnd = useSelector((state) => {
