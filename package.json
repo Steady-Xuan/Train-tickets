@@ -43,6 +43,9 @@
     "react-dev-utils": "^12.0.1",
     "react-dom": "^18.2.0",
     "react-refresh": "^0.11.0",
+    "react-router-dom": "^6.4.3",
+    "redux": "^4.2.0",
+    "redux-thunk": "^2.4.2",
     "resolve": "^1.20.0",
     "resolve-url-loader": "^4.0.0",
     "sass-loader": "^12.3.0",
@@ -71,7 +74,7 @@
       "react-hooks"
     ],
     "rules": {
-      "react-hooks/rules-of-hooks":"error"
+      "react-hooks/rules-of-hooks": "error"
     }
   },
   "browserslist": {
@@ -143,6 +146,8 @@
     ]
   },
   "devDependencies": {
-    "eslint-plugin-react-hooks": "^4.6.0"
+    "@reduxjs/toolkit": "^1.9.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "react-redux": "^8.0.5"
   }
 }

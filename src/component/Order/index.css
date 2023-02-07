@@ -1,0 +1,49 @@
+.header {
+    width: 100%;
+    height: 50px;
+    background-color: skyblue;
+    text-align: center;
+    line-height: 50px;
+    font-size: 18px;
+}
+
+.cityName {
+    height: 40px;
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+.box {
+    height: 100%;
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+.box .cityName:first-child {
+    margin-top: 20px;
+
+}
+
+.codeName {
+    list-style-type: none;
+    position: absolute;
+    right: 0px;
+    top: 50px;
+    height: 100%;
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+}
+
+.codeName>div {
+    margin-top: 30px;
+    color: skyblue;
+}
+
+.container {
+    position: relative;
+}
