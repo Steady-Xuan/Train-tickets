@@ -1,0 +1,73 @@
+.dateSelete {
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    border: 1px solid #ccc;
+    line-height: 40px;
+    font-size: 24px;
+}
+
+.dataWeeks {
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    border: 1px solid #ccc;
+    line-height: 40px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.dataWeeks>div {
+    width: 20%;
+}
+
+
+
+.data_周六, .data_周日 {
+    color: black;
+    background-color: orange;
+
+}
+
+.colunm {
+    width: 100vw;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    word-wrap: break-word;
+}
+
+.tr {
+    width: 20%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border: 1px solid #ccc;
+    background-color: skyblue;
+
+}
+
+.td {
+    width: 20%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border: 1px solid #ccc;
+    background-color: #ccc;
+
+}
+
+.back {
+    position: absolute;
+    left: 20px;
+}
+
+.header {
+    width: 100%;
+    height: 50px;
+    background-color: skyblue;
+    text-align: center;
+    line-height: 50px;
+    font-size: 18px;
+    position: relative;
+}
