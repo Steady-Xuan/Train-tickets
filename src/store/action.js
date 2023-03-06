@@ -4,7 +4,13 @@ import {
     IS_START,
     IS_END,
     START,
-    END
+    END,
+    ACTION_SATE,
+    ACTION_TICKES,
+    IS_SHOW_SELETED,
+    TICKET,
+    PERSON,
+    CHILD
 } from './constants';
 
 export const addAction = (num) => {
@@ -46,5 +52,46 @@ export const endAction = (payload) => {
         payload
     }
 }
+
+export const createDate = (payload) => {
+    return {
+        type: ACTION_SATE,
+        payload
+    }
+}
+
+export const createTcicks = (payload) => {
+    return {
+        type: ACTION_TICKES,
+        payload
+    }
+}
+
+export const createSeleted = (payload) => {
+    return {
+        type: IS_SHOW_SELETED,
+        payload
+    }
+}
+
+export const createdTickets = (payload = []) => {
+    return {
+        type: TICKET,
+        payload
+    }
+}
+export const createdPerson = (payload) => {
+    return {
+        type: PERSON,
+        payload
+    }
+}
+export const createdChild = (payload) => {
+    return {
+        type: CHILD,
+        payload
+    }
+}
+
 
 

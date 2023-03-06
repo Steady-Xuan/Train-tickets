@@ -21,7 +21,7 @@ li, ul {
   width: 200px;
 }
 
-.todo-list,.todo-from {
+.todo-list, .todo-from {
   width: 200px;
   height: 100px;
   line-height: 100px;
@@ -34,4 +34,10 @@ li, ul {
   height: 100px;
   display: flex;
   justify-content: center;
+}
+
+html, body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0px;
 }

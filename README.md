@@ -71,3 +71,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### 所有使用的插件
     eslint-plugin-react-hooks检查hooks编码是否符合规范
+### 项目介绍
+    1.解决了redux传值刷新页面数据丢失问题
+    2.手写了一个简单的日历组件
+    3.手写了一个拼音与地市的联动组件，使用api里scrollIntoView
+    4.封装了一个公用header，使其代码有更好的复用性
+    5.封装了自定义hooks组件useBotton和useSelected
+    6.简单了解购票业务的数据处理问题
+

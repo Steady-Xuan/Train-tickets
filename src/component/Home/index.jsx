@@ -8,9 +8,16 @@ import {
 } from "react-router-dom";
 import { getNowFormatDate } from "../../utils/common";
 import "./index.css";
-import { getIsStart, getIsEnd } from "../../store/action";
+import {
+  getIsStart,
+  getIsEnd,
+  startAction,
+  endAction,
+  createDate,
+} from "../../store/action";
 import { useDispatch, useSelector } from "react-redux";
-
+import dayjs from "dayjs";
+import "dayjs/locale/zh-cn";
 function Header() {
   return <div className="header">火车票</div>;
 }
@@ -29,6 +36,11 @@ function City(props) {
       dispatch(getIsStart(true));
     }
   };
+
+  const changeEnd = () => {
+    dispatch(startAction(selector.end));
+    dispatch(endAction(selector.start));
+  };
   const selector = useSelector((state) => {
     return state.dataTrickRducer;
   });
@@ -37,7 +49,7 @@ function City(props) {
       <span onClick={selectCity} className="text">
         {selector.start}
       </span>
-      <span> --- </span>
+      <span onClick={changeEnd}> --- </span>
       <span
         className="text"
         onClick={() => {
@@ -55,7 +67,7 @@ function DateComponent() {
   const [week, setWeek] = useState();
   const [day, setDay] = useState();
   const nav = useNavigate();
-
+  const dispatch = useDispatch();
   const location = useLocation();
   useEffect(() => {
     const newDate = getNowFormatDate();
@@ -71,7 +83,9 @@ function DateComponent() {
     setWeek(weeks);
   }, []);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    dispatch(createDate(date));
+  }, [date, week]);
   const isToday = (str) => {
     let d = new Date(str).setHours(0, 0, 0, 0);
     let today = new Date().setHours(0, 0, 0, 0);
@@ -92,8 +106,32 @@ function DateComponent() {
   return (
     <div onClick={jumpToDate} className="date">
       <span> {date}</span>
-      <span className="week">{week}</span>
-      <span className="day"> {day}</span>
+      <span className="week">
+        {dayjs(new Date(date)).locale("zh-cn").format("ddd")}
+      </span>
+      <span className="day">
+        {date === dayjs(Date.now()).format("YYYY-MM-DD") ? "今天" : ""}
+      </span>
+    </div>
+  );
+}
+
+function SearhComponent() {
+  const nav = useNavigate();
+
+  const search = () => {
+    nav("/Seats", {
+      state: {
+        place: ``,
+      },
+    });
+  };
+
+  return (
+    <div>
+      <button className="search" onClick={search}>
+        查询
+      </button>
     </div>
   );
 }
@@ -104,6 +142,7 @@ export default function Home() {
       <Header />
       <City></City>
       <DateComponent />
+      <SearhComponent />
     </div>
   );
 }

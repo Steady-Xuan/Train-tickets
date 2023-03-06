@@ -1,0 +1,10 @@
+.add-person {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+.buy-person-ticket {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}

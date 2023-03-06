@@ -1,0 +1,6 @@
+.time-line {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}

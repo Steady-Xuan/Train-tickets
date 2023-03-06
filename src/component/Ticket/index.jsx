@@ -38,13 +38,10 @@ function MathCloum(props) {
 
 function MathTr(props) {
   const nav = useNavigate();
-  const dispatch = useDispatch();
-
   const { colunm, moth } = props;
   const [sumM, setsumM] = useState([]);
 
   const jumpToHome = (arg, parmas) => {
-    console.log(arg, parmas, "td");
     nav(`/home`, {
       state: {
         date: `${parmas}-${arg}`,
