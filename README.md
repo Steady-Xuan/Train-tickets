@@ -78,4 +78,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
     4.封装了一个公用header，使其代码有更好的复用性
     5.封装了自定义hooks组件useBotton和useSelected
     6.简单了解购票业务的数据处理问题
-
+    7.解决了react-redux数据更新，页面不更新的问题
+    8.封装了一个弹出选择框

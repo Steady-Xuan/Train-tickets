@@ -130,6 +130,19 @@ const testReducer = (state = { data: "" }, action) => {
     }
 }
 
+const seatsRducer = (state = "商务座", action) => {
+
+    const { type, payload } = action
+    switch (type) {
+        case 'seats':
+            return payload
+        default:
+            return state
+    }
+
+
+}
+
 
 
 export default combineReducers({
@@ -140,5 +153,6 @@ export default combineReducers({
     tickesRducer,
     isShowreducer,
     optionReducer,
-    testReducer
+    testReducer,
+    seatsRducer
 })

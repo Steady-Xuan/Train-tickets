@@ -10,7 +10,8 @@ import {
     IS_SHOW_SELETED,
     TICKET,
     PERSON,
-    CHILD
+    CHILD,
+    SEATS
 } from './constants';
 
 export const addAction = (num) => {
@@ -89,6 +90,13 @@ export const createdPerson = (payload) => {
 export const createdChild = (payload) => {
     return {
         type: CHILD,
+        payload
+    }
+}
+
+export const createdSeats= (payload) => {
+    return {
+        type: SEATS,
         payload
     }
 }

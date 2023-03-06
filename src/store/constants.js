@@ -11,3 +11,4 @@ export const IS_SHOW_SELETED = 'is_show_seleted';
 export const TICKET = "ticket"
 export const PERSON = "person"
 export const CHILD = "child"
+export const SEATS = "seats"
