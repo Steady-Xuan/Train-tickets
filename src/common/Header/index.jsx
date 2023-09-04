@@ -18,9 +18,9 @@ function Header(props) {
   );
 }
 
-Header.prototype = {
-  title: ProtoType.string.isRequired,
-  isBack: ProtoType.bool.isRequired,
+Header.proptype = {
+  title: PropType.string.isRequired,
+  isBack: PropType.bool.isRequired,
 };
 
 export default Header;
