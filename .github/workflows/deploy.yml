@@ -38,13 +38,13 @@ jobs:
         with:
           node-version: 16
       # 3 安装 pnpm
-      - name: Install pnpm (安装 pnpm)
-        uses: pnpm/action-setup@v2
-        with:
-          version: 7.0.0
+      # - name: Install pnpm (安装 pnpm)
+      #   uses: pnpm/action-setup@v2
+      #   with:
+      #     version: 7.0.0
       # 4 安装依赖
       - name: Install dependencies (安装依赖)
-        run: pnpm install
+        run: npm install
 
       # 5 代码检查，无该命令所以不执行
       # - name: lint (代码检查)
@@ -56,7 +56,7 @@ jobs:
 
       # 7 构建项目
       - name: Build (构建)
-        run: pnpm run build
+        run: npm run build
       # 8 上传构建产物（actions/upload-artifact@v3 会上传工作流程中的文件，允许您在作业之间共享数据并在工作流程完成后存储数据）
       - name:  Upload build artifacts (上传构建产物)
         uses: actions/upload-pages-artifact@v2
