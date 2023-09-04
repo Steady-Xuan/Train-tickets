@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.css";
-import ProtoType from "prop-types";
+import PropType from "prop-types";
 function Header(props) {
   const { title, isBack } = props;
   const goBack = () => {
