@@ -45,6 +45,9 @@ jobs:
       # 4 安装依赖
       - name: Install dependencies (安装依赖)
         run: npm install
+      # 4 升级依赖
+      - name: Install dependencies (升级依赖)
+        run: npx update-browserslist-db@latest 
 
       # 5 代码检查，无该命令所以不执行
       # - name: lint (代码检查)
