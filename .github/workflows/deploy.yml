@@ -66,9 +66,11 @@ jobs:
         with:
           path: "./build"
       ...
-      # 9 部署 GitHub Pages
-      - name: Deploy to GitHub Pages(部署到 GitHub Pages)
-        uses: actions/deploy-pages@v2
+   # 1.2 部署到 gh-pages分支
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          force_orphan: true
 
