@@ -65,3 +65,10 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           path: "./build"
+      ...
+      # 9 部署 GitHub Pages
+      - name: Deploy to GitHub Pages(部署到 GitHub Pages)
+        uses: actions/deploy-pages@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
